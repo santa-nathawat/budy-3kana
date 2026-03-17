@@ -52,15 +52,15 @@ type LogEntry = {
 };
 
 const FACULTY_COLORS: Record<string, { bg: string; text: string; label: string }> = {
-  ENGINEERING: { bg: "#E53E3E", text: "white", label: "🔴 วิศวะ" },
-  SCIENCE: { bg: "#ECC94B", text: "black", label: "🟡 วิทย์" },
-  PHARMACY: { bg: "#38A169", text: "white", label: "🟢 เภสัช" },
+  ENGINEERING: { bg: "var(--color-faculty-eng)", text: "var(--color-faculty-eng-text)", label: "🔴 วิศวะ" },
+  SCIENCE: { bg: "var(--color-faculty-sci)", text: "var(--color-faculty-sci-text)", label: "🟡 วิทย์" },
+  PHARMACY: { bg: "var(--color-faculty-pharm)", text: "var(--color-faculty-pharm-text)", label: "🟢 เภสัช" },
 };
 
 const PHASE_CONFIG: Record<string, { label: string; color: string }> = {
-  REGISTER: { label: "📝 REGISTER", color: "#3B82F6" },
-  RANDOM: { label: "🎲 RANDOM", color: "#F59E0B" },
-  REVEAL: { label: "🎉 REVEAL", color: "#10B981" },
+  REGISTER: { label: "📝 REGISTER", color: "var(--color-faculty-sci-text)" },
+  RANDOM: { label: "🎲 RANDOM", color: "var(--color-faculty-eng-text)" },
+  REVEAL: { label: "🎉 REVEAL", color: "var(--color-faculty-pharm-text)" },
 };
 
 // ─── Faculty Badge ───
@@ -105,8 +105,8 @@ export default function AdminPage() {
 
   if (!authenticated) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-        <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-8 w-full max-w-sm">
+      <div className="min-h-screen flex items-center justify-center bg-background text-foreground p-4">
+        <div className="minimal-card p-8 w-full max-w-sm">
           <h1 className="text-xl font-bold mb-4 text-center">🔒 Admin Login</h1>
           {authError && (
             <p className="text-red-600 text-sm mb-3 bg-red-50 p-2 rounded">{authError}</p>
@@ -121,7 +121,7 @@ export default function AdminPage() {
           />
           <button
             onClick={handleLogin}
-            className="w-full bg-black text-white rounded px-4 py-2 text-sm font-medium hover:bg-gray-800"
+            className="w-full minimal-btn bg-primary text-primary-foreground px-4 py-2 text-sm font-medium"
           >
             เข้าสู่ระบบ
           </button>
@@ -179,7 +179,7 @@ function AdminDashboard() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 sm:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 sm:p-6">
       <div className="max-w-[1400px] mx-auto space-y-6">
         {/* Title */}
         <div className="flex items-center justify-between">
@@ -189,7 +189,7 @@ function AdminDashboard() {
               sessionStorage.removeItem("admin_auth");
               window.location.reload();
             }}
-            className="text-xs text-gray-500 hover:text-red-600 border border-gray-300 rounded px-3 py-1"
+            className="text-xs text-muted-foreground hover:text-red-600 border border-input rounded px-3 py-1 minimal-btn"
           >
             Logout
           </button>
@@ -214,11 +214,11 @@ function AdminDashboard() {
             placeholder="🔍 ค้นหา (ID, ชื่อ, ชื่อเล่น, ฝ่าย, IG)..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="flex-1 min-w-[200px] border border-gray-300 rounded px-3 py-2 text-sm"
+            className="flex-1 min-w-[200px] border border-input rounded px-3 py-2 text-sm bg-white"
           />
           <button
             onClick={() => setShowManualMatch(true)}
-            className="bg-purple-600 text-white text-sm px-4 py-2 rounded font-medium hover:bg-purple-700"
+            className="minimal-btn bg-primary text-primary-foreground text-sm px-4 py-2 font-medium"
           >
             🔗 Manual Match
           </button>
@@ -241,7 +241,7 @@ function AdminDashboard() {
               a.click();
               URL.revokeObjectURL(url);
             }}
-            className="bg-green-600 text-white text-sm px-4 py-2 rounded font-medium hover:bg-green-700"
+            className="minimal-btn border border-input text-foreground text-sm px-4 py-2 font-medium bg-white hover:bg-gray-50"
           >
             📥 Export CSV
           </button>
@@ -314,7 +314,7 @@ function PhaseControl({
   onPhaseChange: (phase: string) => void;
 }) {
   return (
-    <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+    <div className="minimal-card p-4 bg-white">
       <h2 className="text-sm font-bold text-gray-500 mb-3 uppercase tracking-wide">
         🎛 Phase Control
       </h2>
@@ -356,13 +356,13 @@ function PhaseControl({
 // ═══════════════════════════════════════════════
 function StatsPanel({ stats }: { stats: Stats }) {
   const cards = [
-    { label: "Total Users", value: stats.totalUsers, color: "#6366F1" },
-    { label: "🔴 วิศวะ", value: stats.engCount, color: "#E53E3E" },
-    { label: "🟡 วิทย์", value: stats.sciCount, color: "#ECC94B" },
-    { label: "🟢 เภสัช", value: stats.pharmCount, color: "#38A169" },
-    { label: "✅ Matched", value: stats.matchedCount, color: "#10B981" },
-    { label: "⏳ Unmatched", value: stats.unmatchedCount, color: "#F59E0B" },
-    { label: "🎯 Available", value: stats.availableCount, color: "#8B5CF6" },
+    { label: "Total Users", value: stats.totalUsers, color: "var(--foreground)" },
+    { label: "🔴 วิศวะ", value: stats.engCount, color: "var(--color-faculty-eng-text)" },
+    { label: "🟡 วิทย์", value: stats.sciCount, color: "var(--color-faculty-sci-text)" },
+    { label: "🟢 เภสัช", value: stats.pharmCount, color: "var(--color-faculty-pharm-text)" },
+    { label: "✅ Matched", value: stats.matchedCount, color: "var(--color-faculty-pharm-text)" },
+    { label: "⏳ Unmatched", value: stats.unmatchedCount, color: "var(--color-faculty-sci-text)" },
+    { label: "🎯 Available", value: stats.availableCount, color: "var(--foreground)" },
   ];
 
   return (
@@ -370,7 +370,7 @@ function StatsPanel({ stats }: { stats: Stats }) {
       {cards.map((c) => (
         <div
           key={c.label}
-          className="bg-white border border-gray-200 rounded-lg p-3 shadow-sm text-center"
+          className="minimal-card p-3 text-center bg-white"
         >
           <p className="text-xs text-gray-500 font-medium">{c.label}</p>
           <p className="text-2xl font-bold mt-1" style={{ color: c.color }}>
@@ -397,11 +397,11 @@ function UserTable({
   onResetBuddy: (userId: string) => void;
 }) {
   return (
-    <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-x-auto">
+    <div className="minimal-card overflow-x-auto bg-white">
       <table className="w-full text-sm">
         <thead>
-          <tr className="border-b border-gray-200 bg-gray-50">
-            <th className="text-left px-3 py-2 font-semibold text-gray-600">ID</th>
+          <tr className="border-b border-input bg-accent/20">
+            <th className="text-left px-3 py-2 font-semibold text-muted-foreground">ID</th>
             <th className="text-left px-3 py-2 font-semibold text-gray-600">Name</th>
             <th className="text-left px-3 py-2 font-semibold text-gray-600">Nickname</th>
             <th className="text-left px-3 py-2 font-semibold text-gray-600">Faculty</th>
@@ -418,7 +418,7 @@ function UserTable({
         </thead>
         <tbody>
           {users.map((u) => (
-            <tr key={u.id} className="border-b border-gray-100 hover:bg-gray-50">
+            <tr key={u.id} className="border-b border-input hover:bg-accent/30 transition-colors">
               <td className="px-3 py-2 font-mono text-xs">{u.id}</td>
               <td className="px-3 py-2 whitespace-nowrap">{u.name}</td>
               <td className="px-3 py-2 font-bold">{u.nickname}</td>
@@ -506,7 +506,7 @@ function EditUserModal({
 }) {
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-md max-h-[90vh] overflow-y-auto p-6">
+      <div className="minimal-card bg-white w-full max-w-md max-h-[90vh] overflow-y-auto p-6">
         <h2 className="text-lg font-bold mb-4">✏️ Edit User: {user.nickname}</h2>
         <form
           onSubmit={(e) => {
@@ -563,14 +563,14 @@ function EditUserModal({
           <div className="flex gap-2 pt-2">
             <button
               type="submit"
-              className="flex-1 bg-blue-600 text-white rounded px-4 py-2 text-sm font-medium hover:bg-blue-700"
+              className="flex-1 minimal-btn bg-primary text-primary-foreground px-4 py-2 text-sm font-medium"
             >
               Save Changes
             </button>
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 bg-gray-100 text-gray-700 rounded px-4 py-2 text-sm font-medium hover:bg-gray-200"
+              className="flex-1 minimal-btn border border-input text-foreground px-4 py-2 text-sm font-medium hover:bg-accent"
             >
               Cancel
             </button>
@@ -626,7 +626,7 @@ function ManualMatchModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg w-full max-w-md p-6">
+      <div className="minimal-card w-full max-w-md p-6 bg-white">
         <h2 className="text-lg font-bold mb-4">🔗 Manual Match</h2>
         <p className="text-xs text-gray-500 mb-4">
           User A จะถูก set ให้ chosenBuddyId = User B, User B จะถูก set isChosen = true
@@ -679,13 +679,13 @@ function ManualMatchModal({
               if (!confirm(`Match: ${userA} → ${userB}?`)) return;
               onMatch(userA, userB);
             }}
-            className="flex-1 bg-purple-600 text-white rounded px-4 py-2 text-sm font-medium hover:bg-purple-700"
+            className="flex-1 minimal-btn bg-primary text-primary-foreground px-4 py-2 text-sm font-medium"
           >
             🔗 Match
           </button>
           <button
             onClick={onClose}
-            className="flex-1 bg-gray-100 text-gray-700 rounded px-4 py-2 text-sm font-medium hover:bg-gray-200"
+            className="flex-1 minimal-btn border border-input text-foreground px-4 py-2 text-sm font-medium hover:bg-accent"
           >
             Cancel
           </button>
@@ -702,7 +702,7 @@ function ActivityLogTable({ logs }: { logs: LogEntry[] }) {
   if (logs.length === 0) return null;
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg shadow-sm">
+    <div className="minimal-card bg-white">
       <div className="px-4 py-3 border-b border-gray-200">
         <h2 className="text-sm font-bold text-gray-600 uppercase tracking-wide">
           📋 Activity Log (Last 50)
@@ -711,8 +711,8 @@ function ActivityLogTable({ logs }: { logs: LogEntry[] }) {
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-gray-200 bg-gray-50">
-              <th className="text-left px-3 py-2 font-semibold text-gray-600">Time</th>
+            <tr className="border-b border-input bg-accent/20">
+              <th className="text-left px-3 py-2 font-semibold text-muted-foreground">Time</th>
               <th className="text-left px-3 py-2 font-semibold text-gray-600">Action</th>
               <th className="text-left px-3 py-2 font-semibold text-gray-600">Target</th>
               <th className="text-left px-3 py-2 font-semibold text-gray-600">Detail</th>
