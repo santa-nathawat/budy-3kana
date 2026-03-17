@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-export function proxy(request: NextRequest) {
+export default function proxy(request: NextRequest) {
   // Check for the NextAuth session token cookie
   const token =
     request.cookies.get("authjs.session-token") ??
