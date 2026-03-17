@@ -387,7 +387,7 @@ function InfoRow({
           href={`https://instagram.com/${value.replace("@", "")}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-medium text-foreground hover:underline text-sm"
+          className="font-medium text-blue-600 underline hover:text-blue-800 text-sm transition-colors"
         >
           {value}
         </a>

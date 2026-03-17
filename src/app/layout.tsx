@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="th">
       <head>
         <link
-          href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
       </head>
