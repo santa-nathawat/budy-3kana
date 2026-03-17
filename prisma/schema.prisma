@@ -1,0 +1,57 @@
+// Prisma Schema for สานสัมพันธ์ 3 คณะ - Buddy Matching Game
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Faculty {
+  ENGINEERING
+  SCIENCE
+  PHARMACY
+}
+
+enum Phase {
+  REGISTER
+  RANDOM
+  REVEAL
+}
+
+model User {
+  id             String   @id // 10-digit Student ID
+  password       String   // bcrypt hashed
+  name           String   // Full Name
+  nickname       String
+  faculty        Faculty
+  year           Int      // ชั้นปี
+  department     String   // ฝ่ายอะไร (e.g., สานสัมพันธ์, วิชาการ, พี่กลุ่ม)
+  favFood        String   // ชอบกินอะไร
+  wishlist       String   // อยากได้อะไร
+  ig             String   // Instagram handle
+  hint           String   @default("") // คำใบ้
+  chosenBuddyId  String?  @unique // Each user can only be matched once
+  isChosen       Boolean  @default(false) // Has this user been picked by someone?
+  createdAt      DateTime @default(now())
+
+  // Self-relation: who did this user pick as their buddy?
+  chosenBuddy    User?    @relation("BuddyRelation", fields: [chosenBuddyId], references: [id])
+  chosenByUser   User?    @relation("BuddyRelation") // Inverse: who picked this user?
+}
+
+model AppConfig {
+  id        String   @id @default("singleton")
+  phase     Phase    @default(REGISTER)
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+model ActivityLog {
+  id           String   @id @default(cuid())
+  action       String   // e.g. "EDIT", "DELETE", "RESET_BUDDY", "MANUAL_MATCH"
+  targetUserId String
+  detail       String
+  createdAt    DateTime @default(now())
+}
