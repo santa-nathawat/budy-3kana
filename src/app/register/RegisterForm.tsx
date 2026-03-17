@@ -186,13 +186,34 @@ export default function RegisterForm() {
                 <label className="block text-xs font-medium text-foreground tracking-wide uppercase">
                   Department
                 </label>
-                <input
+                <select
                   name="department"
-                  type="text"
                   required
-                  placeholder="e.g. Activity"
-                  className="w-full border border-input rounded-md px-3 py-2 text-sm focus:border-ring transition-colors bg-white"
-                />
+                  className="w-full border border-input rounded-md px-3 py-2 text-sm focus:border-ring transition-colors bg-white text-foreground"
+                >
+                  <option value="" disabled selected hidden>Select Department</option>
+                  <option value="ประธานโครงการ">ประธานโครงการ</option>
+                  <option value="เลขานุการ">เลขานุการ</option>
+                  <option value="ที่ปรึกษาโครงการ">ที่ปรึกษาโครงการ</option>
+                  <option value="เหรัญญิก">เหรัญญิก</option>
+                  <option value="ฝ่ายสปอนเซอร์">ฝ่ายสปอนเซอร์</option>
+                  <option value="ประธานอำนวยการ 1">ประธานอำนวยการ 1</option>
+                  <option value="ประธานอำนวยการ 2">ประธานอำนวยการ 2</option>
+                  <option value="ประธานเนื้อหา">ประธานเนื้อหา</option>
+                  <option value="ประธานวิชาการ">ประธานวิชาการ</option>
+                  <option value="ฝ่ายสวัสดิการ">ฝ่ายสวัสดิการ</option>
+                  <option value="ฝ่ายพยาบาล">ฝ่ายพยาบาล</option>
+                  <option value="ฝ่ายทะเบียนบัตร">ฝ่ายทะเบียนบัตร</option>
+                  <option value="ฝ่ายพัสดุ">ฝ่ายพัสดุ</option>
+                  <option value="ฝ่ายสถานที่และกายภาพ">ฝ่ายสถานที่และกายภาพ</option>
+                  <option value="ฝ่ายพี่กลุ่ม">ฝ่ายพี่กลุ่ม</option>
+                  <option value="ฝ่ายสานสัมพันธ์">ฝ่ายสานสัมพันธ์</option>
+                  <option value="ฝ่ายกิจและพิธีการ">ฝ่ายกิจและพิธีการ</option>
+                  <option value="ฝ่าย PR & Photo">ฝ่าย PR & Photo</option>
+                  <option value="ฝ่ายวิชาการวิศวะ">ฝ่ายวิชาการวิศวะ</option>
+                  <option value="ฝ่ายวิชาการวิทยา">ฝ่ายวิชาการวิทยา</option>
+                  <option value="ฝ่ายวิชาการเภสัช">ฝ่ายวิชาการเภสัช</option>
+                </select>
               </div>
             </div>
 
