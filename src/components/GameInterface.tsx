@@ -166,9 +166,9 @@ export default function GameInterface({
         >
           <button
             onClick={() => setShowBudder(!showBudder)}
-            className="minimal-btn bg-white border border-input text-foreground px-6 py-2.5 text-sm font-medium hover:bg-gray-50 flex items-center justify-center gap-2"
+            className="minimal-btn bg-primary text-primary-foreground px-6 py-2.5 text-sm font-medium hover:opacity-90 flex items-center justify-center gap-2 shadow-sm transition-all"
           >
-            {showBudder ? "Return to Buddy" : "View Budder (Who drew me?)"}
+            {showBudder ? "← Return to Buddy" : "View Budder (Who drew me?) →"}
           </button>
         </motion.div>
       )}
@@ -186,12 +186,15 @@ export default function GameInterface({
           >
             <motion.button
               onClick={handleFindBuddy}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="minimal-btn text-white text-lg px-8 py-4 font-medium shadow-sm"
-              style={{ backgroundColor: facultyConfig.color }}
+              whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)" }}
+              whileTap={{ scale: 0.95 }}
+              className="minimal-btn text-lg px-10 py-5 font-bold shadow-md transition-all duration-300 relative overflow-hidden group"
+              style={{ backgroundColor: facultyConfig.color, color: facultyConfig.textColor }}
             >
-              Find My Buddy
+              <span className="relative z-10 flex items-center gap-2">
+                Find My Buddy ✨
+              </span>
+              <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
             </motion.button>
             <p className="text-xs text-muted-foreground mt-4 font-medium">
               Click to match cross-faculty!

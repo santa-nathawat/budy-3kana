@@ -189,9 +189,10 @@ export default function RegisterForm() {
                 <select
                   name="department"
                   required
+                  defaultValue=""
                   className="w-full border border-input rounded-md px-3 py-2 text-sm focus:border-ring transition-colors bg-white text-foreground"
                 >
-                  <option value="" disabled selected hidden>Select Department</option>
+                  <option value="" disabled hidden>Select Department</option>
                   <option value="ประธานโครงการ">ประธานโครงการ</option>
                   <option value="เลขานุการ">เลขานุการ</option>
                   <option value="ที่ปรึกษาโครงการ">ที่ปรึกษาโครงการ</option>
