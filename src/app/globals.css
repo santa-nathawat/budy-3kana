@@ -46,36 +46,36 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  /* Faculty colors - Minimal soft colors */
-  --color-faculty-eng: #fecaca; /* red-200 */
-  --color-faculty-sci: #fef08a; /* yellow-200 */
-  --color-faculty-pharm: #bbf7d0; /* green-200 */
+  /* Faculty colors - vibrant candy colors */
+  --color-faculty-eng: #ff4d6d; /* vibrant pinkish red */
+  --color-faculty-sci: #fee440; /* bright yellow */
+  --color-faculty-pharm: #00f5d4; /* electric mint */
 
-  --color-faculty-eng-text: #b91c1c; /* red-700 */
-  --color-faculty-sci-text: #a16207; /* yellow-700 */
-  --color-faculty-pharm-text: #15803d; /* green-700 */
+  --color-faculty-eng-text: #ffffff; 
+  --color-faculty-sci-text: #1e1e1e; 
+  --color-faculty-pharm-text: #1e1e1e; 
 }
 
 :root {
-  --background: #fdfbf7;
-  --foreground: #2d2a26;
+  --background: #fdf8f5; /* warm playful white */
+  --foreground: #1e1e1e;
   --card: #ffffff;
-  --card-foreground: #2d2a26;
+  --card-foreground: #1e1e1e;
   --popover: #ffffff;
-  --popover-foreground: #2d2a26;
-  --primary: #6366f1;
+  --popover-foreground: #1e1e1e;
+  --primary: #ff4d6d; /* vibrant magenta/pink */
   --primary-foreground: #ffffff;
-  --secondary: #f3f4f6;
-  --secondary-foreground: #4b5563;
-  --muted: #f3f4f6;
+  --secondary: #00bbf9; /* vibrant blue */
+  --secondary-foreground: #ffffff;
+  --muted: #fef1e6;
   --muted-foreground: #6b7280;
-  --accent: #eef2ff;
-  --accent-foreground: #4f46e5;
+  --accent: #fee440; /* bright yellow */
+  --accent-foreground: #1e1e1e;
   --destructive: #ef4444;
-  --border: #d1d5db; /* slightly darker for thicker borders */
-  --input: #d1d5db;
-  --ring: #8b5cf6; /* purple for focus states */
-  --radius: 1.25rem; /* more bubbly */
+  --border: #1e1e1e; /* thick dark cartoon border */
+  --input: #1e1e1e;
+  --ring: #ff4d6d;
+  --radius: 1.5rem; /* extra bubbly */
 }
 
 @layer base {
@@ -84,7 +84,10 @@
     font-family: var(--font-sans) !important;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    background-color: var(--background);
+    background-image: radial-gradient(#d1cbbd 2px, transparent 2px);
+    background-size: 24px 24px;
     font-family: var(--font-sans);
   }
   html {
@@ -93,54 +96,54 @@
 }
 
 /* ================================
-   Minimal Utilities
+   Game UI Utilities
    ================================ */
 
 .minimal-card {
-  border: 2px solid var(--border);
+  border: 3px solid var(--border);
   border-radius: var(--radius);
   background: var(--card);
-  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.05); /* Solid shadow */
-  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+  box-shadow: 6px 6px 0px var(--border); /* Solid punchy shadow */
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .minimal-card:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0px rgba(99, 102, 241, 0.15); /* Playful colored shadow */
-  border-color: var(--ring);
+  box-shadow: 8px 8px 0px var(--primary); /* Playful colored active shadow */
+  border-color: var(--primary);
 }
 
 .minimal-btn {
   border-radius: calc(var(--radius) * 0.8);
-  border: 2px solid transparent; /* Keeps sizing consistent if we add borders */
-  font-weight: 700;
-  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.08); /* Physical button feel */
-  transition: transform 0.1s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.1s ease;
+  border: 3px solid var(--border);
+  font-weight: 800;
+  box-shadow: 4px 4px 0px var(--border);
+  transition: all 0.1s cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: pointer;
+  letter-spacing: 0.5px;
 }
 
 .minimal-btn:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: 6px 6px 0px var(--border);
+  filter: brightness(1.05);
 }
 
 .minimal-btn:active {
-  transform: translate(2px, 2px);
-  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0); /* Presses into the page */
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px var(--border); /* Presses into the page */
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
-
 ::-webkit-scrollbar-track {
   background: transparent;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #d4d4d4;
-  border-radius: 4px;
+  background: var(--border);
+  border-radius: 8px;
 }
 
 /* Input styles - bouncy and chunky */
@@ -148,17 +151,18 @@ input[type="text"],
 input[type="password"],
 select,
 textarea {
-  border: 2px solid var(--border) !important;
+  border: 3px solid var(--border) !important;
   border-radius: calc(var(--radius) * 0.6) !important;
-  box-shadow: 2px 2px 0px rgba(0,0,0,0.03);
+  box-shadow: 3px 3px 0px rgba(0,0,0,0.1) !important;
   transition: all 0.2s ease;
+  font-weight: 500;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
   transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0px rgba(99, 102, 241, 0.2) !important;
+  box-shadow: 5px 5px 0px var(--ring) !important;
   border-color: var(--ring) !important;
   outline: none !important;
 }

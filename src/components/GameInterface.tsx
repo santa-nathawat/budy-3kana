@@ -186,9 +186,9 @@ export default function GameInterface({
           >
             <motion.button
               onClick={handleFindBuddy}
-              whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)" }}
-              whileTap={{ scale: 0.95 }}
-              className="minimal-btn text-lg px-10 py-5 font-bold shadow-md transition-all duration-300 relative overflow-hidden group"
+              whileHover={{ scale: 1.02, boxShadow: "8px 8px 0px var(--border)" }}
+              whileTap={{ scale: 0.95, boxShadow: "0px 0px 0px var(--border)" }}
+              className="minimal-btn text-lg px-10 py-5 font-bold transition-all duration-300 relative overflow-hidden group"
               style={{ backgroundColor: facultyConfig.color, color: facultyConfig.textColor }}
             >
               <span className="relative z-10 flex items-center gap-2">

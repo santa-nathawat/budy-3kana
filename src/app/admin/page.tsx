@@ -57,10 +57,10 @@ const FACULTY_COLORS: Record<string, { bg: string; text: string; label: string }
   PHARMACY: { bg: "var(--color-faculty-pharm)", text: "var(--color-faculty-pharm-text)", label: "🟢 เภสัช" },
 };
 
-const PHASE_CONFIG: Record<string, { label: string; color: string }> = {
-  REGISTER: { label: "📝 REGISTER", color: "var(--color-faculty-sci-text)" },
-  RANDOM: { label: "🎲 RANDOM", color: "var(--color-faculty-eng-text)" },
-  REVEAL: { label: "🎉 REVEAL", color: "var(--color-faculty-pharm-text)" },
+const PHASE_CONFIG: Record<string, { label: string; color: string; text: string }> = {
+  REGISTER: { label: "📝 REGISTER", color: "var(--color-faculty-sci)", text: "var(--color-faculty-sci-text)" },
+  RANDOM: { label: "🎲 RANDOM", color: "var(--color-faculty-eng)", text: "var(--color-faculty-eng-text)" },
+  REVEAL: { label: "🎉 REVEAL", color: "var(--color-faculty-pharm)", text: "var(--color-faculty-pharm-text)" },
 };
 
 // ─── Faculty Badge ───
@@ -321,8 +321,11 @@ function PhaseControl({
       <div className="flex items-center gap-3 flex-wrap">
         <span className="text-sm text-gray-600 mr-2">Current:</span>
         <span
-          className="px-3 py-1 rounded-full text-sm font-bold text-white"
-          style={{ backgroundColor: PHASE_CONFIG[currentPhase]?.color ?? "#666" }}
+          className="px-3 py-1 rounded-full text-sm font-bold shadow-sm"
+          style={{ 
+            backgroundColor: PHASE_CONFIG[currentPhase]?.color ?? "#666",
+            color: PHASE_CONFIG[currentPhase]?.text ?? "#fff"
+          }}
         >
           {PHASE_CONFIG[currentPhase]?.label ?? currentPhase}
         </span>
@@ -357,11 +360,11 @@ function PhaseControl({
 function StatsPanel({ stats }: { stats: Stats }) {
   const cards = [
     { label: "Total Users", value: stats.totalUsers, color: "var(--foreground)" },
-    { label: "🔴 วิศวะ", value: stats.engCount, color: "var(--color-faculty-eng-text)" },
-    { label: "🟡 วิทย์", value: stats.sciCount, color: "var(--color-faculty-sci-text)" },
-    { label: "🟢 เภสัช", value: stats.pharmCount, color: "var(--color-faculty-pharm-text)" },
-    { label: "✅ Matched", value: stats.matchedCount, color: "var(--color-faculty-pharm-text)" },
-    { label: "⏳ Unmatched", value: stats.unmatchedCount, color: "var(--color-faculty-sci-text)" },
+    { label: "🔴 วิศวะ", value: stats.engCount, color: "var(--foreground)" },
+    { label: "🟡 วิทย์", value: stats.sciCount, color: "var(--foreground)" },
+    { label: "🟢 เภสัช", value: stats.pharmCount, color: "var(--foreground)" },
+    { label: "✅ Matched", value: stats.matchedCount, color: "var(--foreground)" },
+    { label: "⏳ Unmatched", value: stats.unmatchedCount, color: "var(--foreground)" },
     { label: "🎯 Available", value: stats.availableCount, color: "var(--foreground)" },
   ];
 

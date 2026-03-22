@@ -255,7 +255,7 @@ export default function RegisterForm() {
                 name="hint"
                 type="text"
                 required
-                placeholder="คำใบ้ให้บัดเดอร์ทาย"
+                placeholder="คำใบ้ให้ buddy ทาย"
                 className="w-full border border-input rounded-md px-3 py-2 text-sm focus:border-ring transition-colors bg-white"
               />
             </div>
